@@ -69,7 +69,7 @@ interface IERC20Token {
 contract DiaryHaven {
     address internal cUsdTokenAddress =
         0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1;
-    uint private numberOfEvents = 0;
+    uint private numberOfStories = 0;
 
     struct MyStory {
         address payable owner;
@@ -134,13 +134,13 @@ contract DiaryHaven {
         string calldata _imageLink,
         string calldata _description
     ) public checkData(_title, _imageLink, _description) {
-        MyStory storage myStory = stories[numberOfEvents];
+        MyStory storage myStory = stories[numberOfStories];
         myStory.owner = payable(msg.sender);
         myStory.title = _title;
         myStory.imageLink = _imageLink;
         myStory.description = _description;
-        exists[numberOfEvents] = true;
-        numberOfEvents++;
+        exists[numberOfStories] = true;
+        numberOfStories++;
     }
     /// @dev allow story owners to edit their story
     function editStory(
@@ -235,7 +235,7 @@ contract DiaryHaven {
         );
     }
 
-    function viewEventLength() public view returns (uint) {
-        return (numberOfEvents);
+    function viewStoriesLength() public view returns (uint) {
+        return (numberOfStories);
     }
 }
