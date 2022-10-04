@@ -104,19 +104,21 @@
 						"type": "uint256"
 					},
 					{
-						"internalType": "uint256",
-						"name": "numOfDislikes",
-						"type": "uint256"
-					},
-					{
-						"internalType": "string[]",
+						"components": [
+							{
+								"internalType": "address",
+								"name": "user",
+								"type": "address"
+							},
+							{
+								"internalType": "string",
+								"name": "comment",
+								"type": "string"
+							}
+						],
+						"internalType": "struct DiaryHaven.Comment[]",
 						"name": "comments",
-						"type": "string[]"
-					},
-					{
-						"internalType": "uint256",
-						"name": "numOfComments",
-						"type": "uint256"
+						"type": "tuple[]"
 					},
 					{
 						"internalType": "uint256",
@@ -163,12 +165,24 @@
 				"type": "uint256"
 			}
 		],
-		"name": "viewComments",
+		"name": "viewComment",
 		"outputs": [
 			{
-				"internalType": "string[]",
+				"components": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "comment",
+						"type": "string"
+					}
+				],
+				"internalType": "struct DiaryHaven.Comment[]",
 				"name": "",
-				"type": "string[]"
+				"type": "tuple[]"
 			}
 		],
 		"stateMutability": "view",
@@ -176,7 +190,7 @@
 	},
 	{
 		"inputs": [],
-		"name": "viewEventLength",
+		"name": "viewStoriesLength",
 		"outputs": [
 			{
 				"internalType": "uint256",

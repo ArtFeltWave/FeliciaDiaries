@@ -210,6 +210,19 @@ contract DiaryHaven {
     {
         stories[_index].comments.push(Comment(msg.sender, _comment));
     }
+
+    /**
+     * @dev View comments in a story
+     */
+    function viewComment(uint _index)
+        public
+        view
+        exist(_index)
+        returns (Comment[] memory)
+    {
+         return(stories[_index].comments);
+    }
+
     /**
      * @dev allow users to support the owner of a story
      * @notice amount donated must be at least one CUSD 
