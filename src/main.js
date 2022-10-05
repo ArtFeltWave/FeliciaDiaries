@@ -5,7 +5,7 @@ import marketplaceAbi from "../contract/marketplace.abi.json";
 import erc20Abi from "../contract/erc20.abi.json";
 
 const ERC20_DECIMALS = 18;
-const MPContractAddress = "0x1e2d4CbF3941628149121f4fE7c6c4Cb298C774C";
+const MPContractAddress = "0x1ae8eB0b5649f2F8D629507F3D6767E6e9F829A3";
 const cUSDContractAddress = "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1";
 
 let kit;
@@ -40,16 +40,13 @@ const connectCeloWallet = async function () {
 };
 
 async function approve(_price) {
-	const cUSDContract = new kit.web3.eth.Contract(
-		erc20Abi,
-		cUSDContractAddress
-	);
-
+	const cUSDContract = new kit.web3.eth.Contract(erc20Abi, cUSDContractAddress)
+  
 	const result = await cUSDContract.methods
-		.approve(MPContractAddress, _price)
-		.send({ from: kit.defaultAccount });
-	return result;
-}
+	  .approve(MPContractAddress, _price)
+	  .send({ from: kit.defaultAccount })
+	return result
+  }
 
 const getBalance = async function () {
 	const totalBalance = await kit.getTotalBalance(kit.defaultAccount);
@@ -135,7 +132,7 @@ function StoryTemplate(_story) {
 		  </a>
 		</center></p>
 		<div class="d-grid gap-2">
-		${(_story.owner === kit.defaultAccount) ? "" : `<a class="btn btn-outline-dark btn-md supportbtn "  id=${_story.index} >
+		${(_story.owner === kit.defaultAccount) ? "" : `<a class="btn btn-outline-dark btn-md supportbtn disabled"  id=${_story.index} >
 		Support author 
 	  </a>`}
 		</div>
@@ -201,36 +198,7 @@ document.querySelector("#newStoryBtn").addEventListener("click", async (e) => {
 });
 
 document.querySelector("#marketplace").addEventListener("click", async (e) => {
-	if (e.target.className.includes("supportbtn")) {
-		const index = e.target.id;
-		let amount = Number(prompt("How much do you wish to donate? (cUSD)",1));
-		if (typeof amount !== "number") {
-			notification("amount entered is not a valid number");
-			return;
-		}
-			try {
-				notification("⌛ Waiting for donation approval...");
-				await approve(amount);
-			} catch (error) {
-				notification(`⚠️ ${error}.`);
-			}
-			notification(
-				`⌛ donation in progress`
-			);
-			try {
-				amount = new BigNumber(amount).shiftedBy(ERC20_DECIMALS).toString();
-				const result = await contract.methods
-					.support(index, amount)
-					.send({ from: kit.defaultAccount });
-				notification(
-					`donation successful `
-				);
-				getStories();
-				getBalance();
-			} catch (error) {
-				notification(`⚠️ ${error}.`);
-			}
-		}
+	
 	
 		if (e.target.className.includes("editStorybtn")) {
 			const index = e.target.id;
@@ -334,5 +302,26 @@ document.querySelector("#marketplace").addEventListener("click", async (e) => {
 				getBalance();
 				getStories();	
 			}
-		
+	
+			if (e.target.className.includes("supportbtn")) {
+				const index = e.target.id
+				let amount = new BigNumber(prompt("How much do you wish to donate (cUSD):","1")).shiftedBy(ERC20_DECIMALS).toString()
+				notification("⌛ Waiting for payment approval...")
+				try {
+				  await approve(amount)
+				} catch (error) {
+				  notification(`⚠️ ${error}.`)
+				}
+				notification(`⌛ processing payment `)
+				try {
+				  const result = await contract.methods
+					.support(index,amount)
+					.send({ from: kit.defaultAccount })
+				  notification(`🎉 You successfully donated`)
+				  getStories()
+				  getBalance()
+				} catch (error) {
+				  notification(`⚠️ ${error}.`)
+				}
+			  }
 });

@@ -233,19 +233,19 @@ contract DiaryHaven {
         exist(_index)
         checkIfNotOwner(_index)
     {
-        require(_amount >= 1 ether, "Amount must be at least one cusd)");
-        MyStory storage currentStory = stories[_index];
-        currentStory.supportedBy++;
-        uint newSupportAmount = currentStory.supportAmount + _amount;
-        currentStory.supportAmount = newSupportAmount;
+        require(_amount >= 1 , "Amount must be at least one cusd)");
         require(
             IERC20Token(cUsdTokenAddress).transferFrom(
                 msg.sender,
-                currentStory.owner,
+                stories[_index].owner,
                 _amount
             ),
             "Transfer failed."
         );
+        stories[_index].supportedBy++;
+        uint newSupportAmount = stories[_index].supportAmount + _amount;
+        stories[_index].supportAmount = newSupportAmount;
+        
     }
 
     function viewStoriesLength() public view returns (uint) {
