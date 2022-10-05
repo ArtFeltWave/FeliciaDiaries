@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- CSS -->
-
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -17,184 +15,64 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css"
     />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Rancho:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-
     <style>
       :root {
         --bs-font-sans-serif: "Rancho", sans-serif;
       }
-    
-    h1{
-        text-align: center;
-        color: #333333;
-    }
-    .cardcontainer{
-        width: 370px;
-        height: 570px;
-        background-color: white;
-        margin-left: auto;
-        margin-right: auto;
-        transition: 0.3s;
-    }
-    .cardcontainer:hover{
-        box-shadow: 0 0 45px gray;
-    }
-    .photo{
-        height: 300px;
-        width: 100%;
-    }
-    .photo img{
-        height: 100%;
-        width: 100%;
-    }
-    .txt1{
-        margin: auto;
-        text-align: center;
-        font-size: 17px;
-    }
-    .marketplace{
-        background-color: beige;
-    }
-    .content{
-        width: 80%;
-        height: 100px;
-        margin-left: auto;
-        margin-right: auto;
-        position: relative;
-        top: -33px;
-    }
-    .photos{
-        width: 90px;
-        height: 30px;
-        background-color: #E74C3C;
-        color: white;
-        position: relative;
-        top: -30px;
-        padding-left: 10px;
-        font-size: 20px;
-    }
-    .txt4{
-        font-size:27px;
-        position: relative;
-        top: 33px;
-        margin: 20px;
-    }
-    .txt5{
-        position: relative;
-        top: 18px;
-        color: #E74C3C;
-        font-size: 23px;
-    }
-    .txt2{
-        position: relative;
-        top: 10px;
-    }
-    .cardcontainer:hover > .photo{
-        height: 200px;
-        animation: move1 0.5s ease both;
-    }
-    @keyframes move1{
-        0%{height: 300px}
-        100%{height: 200px}
-    }
-    .cardcontainer:hover > .content{
-        height: 150px;
-    }
-    .footer{
-        width: 80%;
-        height: 100px;
-        margin-left: auto;
-        margin-right: auto;
-        background-color: white;
-        position: relative;
-        top: -15px;
-    }
-    .btn{
-        position: relative;
-        top: 20px;
-    }
-    .heart .bad{
-        cursor: pointer;
-    }
-    
-    .like {
-        float: right;
-        font-size: 20px;
-        position: relative;
-        top: 20px;
-        color: #333333;
-    }
-    .dislike{
-        float: right;
-        margin-right: 45px ;
-        font-size: 20px;
-        position: relative;
-        top: 20px;
-        color: #333333;
-    }
-    .fa-gratipay{
-        margin-right: 10px;
-        transition: 0.5s;
-    }
-    .fa-gratipay:hover{
-        color: #E74C3C;
-    }
-    .txt3{
-        color: gray;
-        position: relative;
-        top: 18px;
-        font-size: 14px;
-    }
-    .comments{
-        float: right;
-        cursor: pointer;
-    }
-    .fa-clock, .fa-comments{
-        margin-right: 7px;
-    }
-      /*@media (min-width: 576px) {
+      body {
+        background-color: #d4bb91;
+        /*background-color: #f0e2cd;*/
+      }
+      .container {
+        background-color: #fff8e8;
+      }
+
+      @media (min-width: 576px) {
         .card {
           border: 0;
           box-shadow: rgb(0 0 0 / 5%) 0px 10px 20px;
-          border-radius: 10px;
+          border-radius: 40px;
+          background-color: #af884a;
         }
 
         .card-img-top {
           width: 100%;
           height: 20vw;
           object-fit: cover;
+          padding: 15px;
+          background-color: rgb(20, 17, 17);
         }
-      }*/
+
+        .card-body:hover {
+          background-color: burlywood;
+          color: black;
+        }
+      }
     </style>
-    <title>FeliciaDiaries</title>
+    <title>Felicia Diaries</title>
   </head>
   <body>
-    <div class="container-fluid mt-2" style="max-width: 72em">
-      <nav class="navbar bg-white navbar-light">
+    <div class="container mx-auto mt-5">
+      <nav class="navbar bg-ligt navbar-light">
         <div class="container-fluid">
-          <span class="navbar-brand m-0 h4 fw-bold"
-            ><h1>FeliciaDiaries<i class="bi bi-vector-pen"></i></h1
+          <span class="navbar-brand fw-bold"
+            ><h1>Felicia Diaries<i class="bi bi-journal-text"></i></h1
           ></span>
 
           <span class="nav-link border rounded-pill bg-light">
-            <i class="bi bi-person-circle"></i>
+            <i class="bi bi-file-person-fill"></i>
             <span id="balance">0</span>
             cUSD
           </span>
         </div>
       </nav>
       <div class="alert alert-warning sticky-top mt-2" role="alert">
-        <div
-          class="spinner-grow spinner-grow-md text-danger float-end"
-          role="status"
-        >
-          <span class="visually-hidden">Loading...</span>
-        </div>
-        <span id="notification" class="h3">connecting...</span>
+        <span id="notification"> retriving data...</span>
       </div>
 
       <div class="mb-4" style="margin-top: 4em" id="con">
@@ -206,7 +84,9 @@
           Write your story <i class="bi bi-emoji-smile"></i>
         </a>
       </div>
-      <main id="marketplace" class="row">Available Stories</main>
+      <main id="marketplace" class="row">
+        <h5>Loading Available Stories ...</h5>
+      </main>
     </div>
     <!--Modal-->
     <div
@@ -281,6 +161,7 @@
       </div>
     </div>
     <!--/Modal-->
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
